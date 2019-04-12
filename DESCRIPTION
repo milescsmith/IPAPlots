@@ -1,0 +1,28 @@
+Type: Package
+Package: IPAPlots
+Title: Plot pathway data exported from IPA
+Version: 0.0.0.9000
+Author: Miles Smith [aut, cre]
+Maintainer: Miles Smith <miles-smith@omrf.org>
+Authors@R: 
+    person(given = "Miles",
+           family = "Smith",
+           role = c("aut", "cre"),
+           email = "miles-smith@omrf.org"
+Description: Plot pathway data exported from IPA.
+License: BSD_3_clause + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Depends: R (>= 3.5.0)
+Imports: 
+    magrittr,
+    ggplot2,
+    ggrepel,
+    dplyr,
+    glue,
+    purrr,
+    stringr,
+    data.table,
+    forcats

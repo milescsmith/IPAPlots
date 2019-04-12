@@ -1,7 +1,7 @@
 #' @title plotRegulatorZscores
 #'
 #' @param module_table A data.frame or tibble with the columns "Upstream Regulator", "Activation z-score",
-#' and "p-value of overlap".  Use \code[IPAPlots]{prepUpstreamRegulatorLists}
+#' and "p-value of overlap".  Use \link[IPAPlots]{prepUpstreamRegulatorLists}
 #' @param number_genes_show The number of genes with the top negative and positive z-scores to label
 #' @param pos_label_force The replusion force for the positive z-scoring gene names, passed to geom_text_repel
 #' @param neg_label_force The replusion force for the negative z-scoring gene names, passed to geom_text_repel

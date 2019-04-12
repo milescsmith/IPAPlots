@@ -1,7 +1,7 @@
 #' @title plotCanonicalPathways
 #'
 #' @param plot_data Either one data.frame/tibble or a list of data.frames/tibbles to plot.
-#' Accepts data from \code[IPAPlots]{prepCanonicalPathways}
+#' Accepts data from \link[IPAPlots]{prepCanonicalPathways}
 #' @param number_pathways Number of pathways to plot.  Default: 5
 #' @param ... Additional parameters to pass
 #'

@@ -12,7 +12,7 @@ prepUpstreamRegulatorLists(path, filename_extension = "txt")
 \item{filename_extension}{File extension used for the IPA output files.  Default: "txt"}
 }
 \value{
-list of data.frames, each of which can be plotted using \code[IPAPlots]{plotRegulatorZscores}
+list of data.frames, each of which can be plotted using \link[IPAPlots]{plotRegulatorZscores}
 }
 \description{
 Read in a directory populated with upstream regulator tables from IPA

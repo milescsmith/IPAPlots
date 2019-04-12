@@ -15,7 +15,7 @@ plotCanonicalPathways(plot_data, ...)
 }
 \arguments{
 \item{plot_data}{Either one data.frame/tibble or a list of data.frames/tibbles to plot.
-Accepts data from \code[IPAPlots]{prepCanonicalPathways}}
+Accepts data from \link[IPAPlots]{prepCanonicalPathways}}
 
 \item{...}{Additional parameters to pass}
 

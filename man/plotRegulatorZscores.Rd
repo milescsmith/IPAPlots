@@ -17,7 +17,7 @@ plotRegulatorZscores(...)
 \item{...}{Additional parameters to pass}
 
 \item{module_table}{A data.frame or tibble with the columns "Upstream Regulator", "Activation z-score",
-and "p-value of overlap".  Use \code[IPAPlots]{prepUpstreamRegulatorLists}}
+and "p-value of overlap".  Use \link[IPAPlots]{prepUpstreamRegulatorLists}}
 
 \item{number_genes_show}{The number of genes with the top negative and positive z-scores to label}
 

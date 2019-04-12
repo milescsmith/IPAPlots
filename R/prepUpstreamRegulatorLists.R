@@ -9,7 +9,7 @@
 #' @importFrom stringr str_remove
 #' @importFrom data.table fread
 #' @importFrom purrr map
-#' @return list of data.frames, each of which can be plotted using \code[IPAPlots]{plotRegulatorZscores}
+#' @return list of data.frames, each of which can be plotted using \link[IPAPlots]{plotRegulatorZscores}
 #' @export
 #'
 #' @examples reg_lists <- prepUpstreamRegulatorList(path = "~/path_to_ipa_output")

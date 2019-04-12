@@ -8,7 +8,7 @@ Authors@R:
     person(given = "Miles",
            family = "Smith",
            role = c("aut", "cre"),
-           email = "miles-smith@omrf.org"
+           email = "miles-smith@omrf.org")
 Description: Plot pathway data exported from IPA.
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8

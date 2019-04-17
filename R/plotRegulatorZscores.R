@@ -11,6 +11,7 @@
 #' @importFrom ggplot2 guides element_rect element_blank
 #' @importFrom dplyr filter top_n
 #' @importFrom ggrepel geom_label_repel
+#' @importFrom glue glue
 #'
 #'
 #' @return a ggplot object
@@ -28,7 +29,8 @@ plotRegulatorZscores <- function(...){
 plotRegulatorZscores.data.frame <- function(module_table,
                                    number_genes_show = 10,
                                    pos_label_force = 10,
-                                   neg_label_force = 10){
+                                   neg_label_force = 10,
+                                   title = NULL){
   module_table[is.na(module_table)] <- 0
   modplot <- module_table %>%
     ggplot(aes(x = reorder(upstream_regulator, activation_z_score),
@@ -64,7 +66,9 @@ plotRegulatorZscores.data.frame <- function(module_table,
     scale_fill_gradient(low = "deepskyblue2", high = "tomato2") +
     guides(fill = "none",
            alpha = "none")
-
+  if(!is.null(title)){
+    modplot <- modplot+labs(title = title)
+  }
   return(modplot)
 }
 
@@ -73,6 +77,12 @@ plotRegulatorZscores.data.frame <- function(module_table,
 #' @return
 #' @export
 plotRegulatorZscores.list <- function(module_tables, ...){
-  modplots <- map(module_tables, plotRegulatorZscores, ...)
+  modplots <- map(seq(module_tables), function(x){
+    if ("activation_z_score" %in% colnames(module_tables[[x]])){
+      plotRegulatorZscores(module_tables[[x]], title = names(module_tables)[[x]], ...)
+    } else {
+      message(glue("There were no z-scores available for {names(module_tables)[[x]]}"))
+    }
+  })
   return(modplots)
 }

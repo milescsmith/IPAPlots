@@ -9,7 +9,8 @@
 plotRegulatorZscores(...)
 
 \method{plotRegulatorZscores}{data.frame}(module_table,
-  number_genes_show = 10, pos_label_force = 10, neg_label_force = 10)
+  number_genes_show = 10, pos_label_force = 10, neg_label_force = 10,
+  title = NULL)
 
 \method{plotRegulatorZscores}{list}(module_tables, ...)
 }

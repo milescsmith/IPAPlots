@@ -20,7 +20,7 @@ prepCanonicalPathways <- function(path, filename_extension = "txt"){
 
   plot_data <- map(plot_files, fread, data.table = FALSE)
 
-  names(plot_data) <- dir(path = info_text_files_path,
+  names(plot_data) <- dir(path = path,
                           full.names = FALSE,
                           pattern = "txt$") %>%
     str_remove(".txt$")

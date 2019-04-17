@@ -5,7 +5,7 @@
 #' @param number_pathways Number of pathways to plot.  Default: 5
 #' @param ... Additional parameters to pass
 #'
-#' @importFrom dplyr arrange select top_n
+#' @importFrom dplyr arrange select top_n mutate
 #' @importFrom ggplot2 ggplot aes geom_col coord_flip scale_fill_gradient2 labs scale_x_discrete theme element_line element_text
 #' @importFrom stringr str_remove str_replace str_wrap
 #' @importFrom forcats fct_reorder
@@ -25,25 +25,31 @@ plotCanonicalPathways <- function(plot_data, ...){
 #' @return
 #' @export
 plotCanonicalPathways.data.frame <- function(plot_data, number_pathways = 5){
+  # IPA cannot always assign a z-scores and instead of going with 0, it uses NaN
+  # This kills the coloration of the graph
+  plot_data %<>% rename(z_score = `z-score`) %>% mutate(z_score = replace_na(z_score, replace = 0))
+  # This makes sure we have an equivalent min and max range
+  scale_val <- max(abs(plot_data[["z_score"]]))
+
   pl <- plot_data %>%
     arrange(`-log(p-value)`) %>%
     select(`Ingenuity Canonical Pathways`,
            `-log(p-value)`,
-           `z-score`,
+           z_score,
            Ratio) %>%
     top_n(number_pathways, `-log(p-value)`) %>%
     mutate(pathway = fct_reorder(`Ingenuity Canonical Pathways`,
                                  `-log(p-value)`)) %>%
     ggplot(aes(x = pathway,
                y = `-log(p-value)`,
-               fill = `z-score`)) +
+               fill = z_score)) +
     geom_col(color = 'black') +
     coord_flip() +
     scale_fill_gradient2(low = 'blue',
                          mid = "white",
                          high = 'orange',
                          midpoint = 0,
-                         limits = c(-5,5)) +
+                         limits = c(-scale_val,scale_val)) +
     labs(title = names(plot_data) %>%
            str_remove(pattern = "^Canonical pathways for ") %>%
            str_replace(pattern = "DEG", replacement = "DE genes"),

@@ -25,11 +25,12 @@ plotCanonicalPathways <- function(plot_data, ...){
 #' @return
 #' @export
 plotCanonicalPathways.data.frame <- function(plot_data, number_pathways = 5){
-  # IPA cannot always assign a z-scores and instead of going with 0, it uses NaN
+  # IPA cannot always assign a z-scores and instead of going with , it uses NaN
   # This kills the coloration of the graph
-  plot_data %<>% rename(z_score = `z-score`) %>% mutate(z_score = replace_na(z_score, replace = 0))
+  plot_data %<>% rename(z_score = `z-score`) #%>% mutate(z_score = replace_na(z_score, replace = NA))
   # This makes sure we have an equivalent min and max range
-  scale_val <- max(abs(plot_data[["z_score"]]))
+  scale_val <- max(abs(plot_data[["z_score"]]), na.rm = TRUE)
+  message(scale_val)
 
   pl <- plot_data %>%
     arrange(`-log(p-value)`) %>%

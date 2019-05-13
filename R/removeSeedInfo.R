@@ -1,6 +1,6 @@
 #' removeSeedInfo
 #' @description This gets rid of the "(and other miRNAs w/seed GGAAUGU)"-like info after all the miRNAs
-#' @param urlists
+#' @param urlists Upstream regulator lists to fix.
 #'
 #' @importFrom stringr str_remove
 #' @importFrom purrr map

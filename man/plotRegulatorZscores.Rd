@@ -10,9 +10,9 @@ plotRegulatorZscores(...)
 
 \method{plotRegulatorZscores}{data.frame}(module_table,
   number_genes_show = 10, pos_label_force = 10, neg_label_force = 10,
-  title = NULL)
+  plot_these_regulators = NULL, title = NULL, ...)
 
-\method{plotRegulatorZscores}{list}(module_tables, ...)
+\method{plotRegulatorZscores}{list}(module_table, ...)
 }
 \arguments{
 \item{...}{Additional parameters to pass}
@@ -25,6 +25,11 @@ and "p-value of overlap".  Use \link[IPAPlots]{prepUpstreamRegulatorLists}}
 \item{pos_label_force}{The replusion force for the positive z-scoring gene names, passed to geom_text_repel}
 
 \item{neg_label_force}{The replusion force for the negative z-scoring gene names, passed to geom_text_repel}
+
+\item{plot_these_regulators}{A list of potential regulators to use as a filter.  Only those regulators
+that are in this list will be displayed (if present).}
+
+\item{title}{Plot title}
 }
 \value{
 a ggplot object

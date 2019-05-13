@@ -5,23 +5,23 @@
 #' @param path The path to a directory containing output files from IPA
 #' @param filename_extension File extension used for the IPA output files.  Default: "txt"
 #'
-#' @importFrom glue glue
-#' @importFrom stringr str_remove
+#' @importFrom stringr str_remove str_glue str_replace_all
 #' @importFrom data.table fread
 #' @importFrom purrr map
 #' @return list of data.frames, each of which can be plotted using \link[IPAPlots]{plotRegulatorZscores}
 #' @export
 #'
-#' @examples reg_lists <- prepUpstreamRegulatorList(path = "~/path_to_ipa_output")
+#' @examples
+#' \dontrun{reg_lists <- prepUpstreamRegulatorLists(path = "~/path_to_ipa_output")}
 prepUpstreamRegulatorLists <- function(path, filename_extension = "txt"){
   urfiles <- dir(path = path,
-                 pattern = glue("{filename_extension}$"),
+                 pattern = str_glue("{filename_extension}$"),
                  full.names = TRUE)
   urfiles <- map(urfiles, fread, data.table = FALSE)
   urnames <- dir(path = path,
-                 pattern = glue("{filename_extension}$"),
+                 pattern = str_glue("{filename_extension}$"),
                  full.names = FALSE) %>%
-    str_remove(pattern = glue("\\.+{filename_extension}$")) %>%
+    str_remove(pattern = str_glue("\\.+{filename_extension}$")) %>%
     reformatModuleNames()
   names(urfiles) <- urnames
   urfiles %<>% removeSeedInfo()

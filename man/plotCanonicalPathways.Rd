@@ -9,7 +9,7 @@
 plotCanonicalPathways(plot_data, ...)
 
 \method{plotCanonicalPathways}{data.frame}(plot_data,
-  number_pathways = 5)
+  number_pathways = 5, ...)
 
 \method{plotCanonicalPathways}{list}(plot_data, number_pathways = 5, ...)
 }

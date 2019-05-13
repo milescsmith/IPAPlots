@@ -4,8 +4,7 @@
 #'
 #' @param urlist_names List of character vectors to rename.
 #'
-#' @importFrom stringr str_replace str_match
-#' @importFrom glue glue
+#' @importFrom stringr str_replace str_match str_glue
 #' @importFrom purrr map_chr
 #' @return List of character vectors.
 #' @export
@@ -27,6 +26,6 @@ reformatModuleNames <- function(urlist_names){
       str_replace(pattern = "DEG module",
                   replacement = "DE genes") %>%
       str_replace(pattern = '[a-z0-9]+$',
-                  replacement = glue("{str_match(i, pattern = '[a-z0-9]+$')} module"))
+                  replacement = str_glue("{str_match(i, pattern = '[a-z0-9]+$')} module"))
     })
 }

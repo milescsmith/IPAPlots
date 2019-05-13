@@ -5,7 +5,7 @@
 #' @param number_pathways Number of pathways to plot.  Default: 5
 #' @param ... Additional parameters to pass
 #'
-#' @importFrom dplyr arrange select top_n mutate
+#' @importFrom dplyr arrange select top_n mutate rename
 #' @importFrom ggplot2 ggplot aes geom_col coord_flip scale_fill_gradient2 labs scale_x_discrete theme element_line element_text
 #' @importFrom stringr str_remove str_replace str_wrap
 #' @importFrom forcats fct_reorder
@@ -14,7 +14,6 @@
 #' @return
 #' @export
 #'
-#' @examples
 plotCanonicalPathways <- function(plot_data, ...){
   UseMethod('plotCanonicalPathways')
 }
@@ -24,7 +23,18 @@ plotCanonicalPathways <- function(plot_data, ...){
 #' @method plotCanonicalPathways data.frame
 #' @return
 #' @export
-plotCanonicalPathways.data.frame <- function(plot_data, number_pathways = 5){
+#'
+plotCanonicalPathways.data.frame <- function(plot_data,
+                                             number_pathways = 5,
+                                             ...){
+
+  #globalVariables fix
+  `z-score`<- z_score <- NULL
+  `-log(p-value)` <- NULL
+  `Ingenuity Canonical Pathways` <- NULL
+  Ratio <- NULL
+  pathway <- NULL
+
   # IPA cannot always assign a z-scores and instead of going with , it uses NaN
   # This kills the coloration of the graph
   plot_data %<>% rename(z_score = `z-score`) #%>% mutate(z_score = replace_na(z_score, replace = NA))
@@ -72,7 +82,10 @@ plotCanonicalPathways.data.frame <- function(plot_data, number_pathways = 5){
 #' @method plotCanonicalPathways list
 #' @return
 #' @export
-plotCanonicalPathways.list <- function(plot_data, number_pathways = 5, ...){
+#'
+plotCanonicalPathways.list <- function(plot_data,
+                                       number_pathways = 5,
+                                       ...){
   pls <- map(plot_data, plotCanonicalPathways, number_pathways, ...)
   return(pls)
 }

@@ -10,8 +10,7 @@
 #' @param ... Additional parameters to pass to ggsave
 #'
 #' @importFrom ggplot2 ggsave
-#' @importFrom stringr str_replace
-#' @importFrom glue glue
+#' @importFrom stringr str_replace str_glue
 #'
 #' @return
 #' @export
@@ -25,7 +24,7 @@ saveCanonicalPlots <- function(plot_list,
                                ...){
   for(i in seq(plot_list)){
     if (!is.null(plot_list[[i]])){
-      ggsave(filename = str_replace(string = as.character(glue("{names(plot_list)[[i]]}.png")),
+      ggsave(filename = str_replace(string = as.character(str_glue("{names(plot_list)[[i]]}.png")),
                                     pattern = " ",
                                     replacement = "_"),
              plot = plot_list[[i]],

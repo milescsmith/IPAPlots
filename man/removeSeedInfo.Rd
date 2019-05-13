@@ -7,7 +7,7 @@
 removeSeedInfo(urlists)
 }
 \arguments{
-\item{urlists}{}
+\item{urlists}{Upstream regulator lists to fix.}
 }
 \value{
 list

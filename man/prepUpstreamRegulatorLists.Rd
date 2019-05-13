@@ -19,5 +19,5 @@ Read in a directory populated with upstream regulator tables from IPA
 and return a named list ready for making plots
 }
 \examples{
-reg_lists <- prepUpstreamRegulatorList(path = "~/path_to_ipa_output")
+\dontrun{reg_lists <- prepUpstreamRegulatorLists(path = "~/path_to_ipa_output")}
 }
